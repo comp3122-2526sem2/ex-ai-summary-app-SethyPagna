@@ -108,7 +108,7 @@ Open the forwarded port (Codespaces "Ports" tab) and confirm the page loads.
 Here is the default Next.js starter page you should see:
 
 > [SCREENSHOT PLACEHOLDER — After running the dev server, capture the Next.js starter page and save a screenshot here.]
-![Next.js Starter Page](nextjs-starter.png)
+![Next.js Starter Page](image/nextjs-starter.png)
 
 
 ### Add a minimal UI 
@@ -140,7 +140,7 @@ This component is the starting page of the AI Summary App. When the page loads, 
 Visit the app in your browser again to verify the changes took effect.
 
 > [SCREENSHOT PLACEHOLDER — After updating `app/page.tsx`, capture a screenshot of the minimal UI and save it here.]
-![Minimal UI Starter Page](screenshot-of-the-minimal-UI.png)
+![Minimal UI Starter Page](image/screenshot-of-the-minimal-UI.png)
 
 
 Start a new terminal
@@ -169,13 +169,13 @@ vercel login
 ```
 
 > [SCREENSHOT PLACEHOLDER — After logging into Vercel (or running `vercel login`), capture the login prompt and save a screenshot here.]
-![vercel login](vercel-login.png)
-![vercel login terminal](vercel-login-terminal.png)
+![vercel login](image/vercel-login.png)
+![vercel login terminal](image/vercel-login-terminal.png)
 
 The thing here is that when i write vercel whoami, it shows no credentials and asks me to login again and some errors...i asked my friend and they didn't have the same problem. 
 
 So, i did it manually on the website vercel, you can see the screenshot below:
-![vercel deployed manually](deployed-manually.png)
+![vercel deployed manually](image/deployed-manually.png)
 
 
 Now deploy the app from the `my-app/` folder
