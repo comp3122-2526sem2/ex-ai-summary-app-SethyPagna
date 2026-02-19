@@ -168,14 +168,19 @@ Then login to Vercel:
 vercel login
 ```
 
+
+<!-- ![vercel login](image/vercel-login.png)
+![vercel login terminal](image/vercel-login-terminal.png) -->
+
+<!-- The thing here is that when i write vercel whoami, it shows no credentials and asks me to login again and some errors...i asked my friend and they didn't have the same problem.  -->
+
+<!-- So, i did it manually on the website vercel, you can see the screenshot below:
+![vercel deployed manually](image/deployed-manually.png) -->
+
 > [SCREENSHOT PLACEHOLDER — After logging into Vercel (or running `vercel login`), capture the login prompt and save a screenshot here.]
-![vercel login](image/vercel-login.png)
-![vercel login terminal](image/vercel-login-terminal.png)
 
-The thing here is that when i write vercel whoami, it shows no credentials and asks me to login again and some errors...i asked my friend and they didn't have the same problem. 
-
-So, i did it manually on the website vercel, you can see the screenshot below:
-![vercel deployed manually](image/deployed-manually.png)
+Turns out, after 3-5 redo's and rest, I decided to change from web codespace to the VS Code application...you know what...finally it works.
+![vercel CLI login](image/vercel-CLI-login.png)
 
 
 Now deploy the app from the `my-app/` folder
@@ -188,7 +193,7 @@ vercel
 Accept the default settings.
 
 The terminal will show a deployment URL once complete.
-
+ 
 You can "Ctrl+Click" the URL to open the deployed app in a new browser tab.
  
 In the terminal running your NextJS app, stop the local server with `Ctrl+C` to stop the app.
