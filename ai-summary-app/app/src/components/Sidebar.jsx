@@ -1,5 +1,5 @@
-import { supabase } from '../lib/supabase';
 import { useToast } from '../hooks/useToast';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Sidebar({
   user,
@@ -12,12 +12,14 @@ export default function Sidebar({
   onClose,
 }) {
   const toast = useToast();
-  const userInitial = (user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || 'U')[0].toUpperCase();
-  const userLabel = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email || 'User';
-  const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || null;
+  const { logout } = useAuth();
 
-  async function handleLogout() {
-    await supabase.auth.signOut();
+  // Since we now store simple users (email + id only)
+  const userInitial = (user?.name || user?.email || 'U')[0].toUpperCase();
+  const userLabel = user?.name || user?.email || 'User';
+
+  function handleLogout() {
+    logout();
     toast('Signed out successfully', 'info');
   }
 
@@ -29,12 +31,14 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
           style={{
-            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)',
-            zIndex: 150, display: 'none',
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 150,
+            display: 'none',
           }}
           className="mobile-overlay"
           onClick={onClose}
@@ -56,7 +60,10 @@ export default function Sidebar({
             <button
               key={item.id}
               className={`sidebar-item ${activeView === item.id ? 'active' : ''}`}
-              onClick={() => { onNavigate(item.id); onClose(); }}
+              onClick={() => {
+                onNavigate(item.id);
+                onClose();
+              }}
             >
               <span className="item-icon">{item.icon}</span>
               {item.label}
@@ -74,15 +81,32 @@ export default function Sidebar({
 
           {projects.length > 0 && (
             <>
-              <div className="sidebar-section-label" style={{ marginTop: 12 }}>Projects</div>
+              <div
+                className="sidebar-section-label"
+                style={{ marginTop: 12 }}
+              >
+                Projects
+              </div>
+
               {projects.map((project) => (
                 <button
                   key={project.id}
-                  className={`sidebar-project-item ${activeProjectId === project.id ? 'active' : ''}`}
-                  onClick={() => { onNavigate('project', project.id); onClose(); }}
+                  className={`sidebar-project-item ${
+                    activeProjectId === project.id ? 'active' : ''
+                  }`}
+                  onClick={() => {
+                    onNavigate('project', project.id);
+                    onClose();
+                  }}
                 >
                   <div className="sidebar-project-dot" />
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <span
+                    style={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
                     {project.name}
                   </span>
                 </button>
@@ -93,16 +117,14 @@ export default function Sidebar({
 
         <div className="sidebar-footer">
           <div className="user-chip">
-            <div className="user-avatar" style={{ padding: 0, overflow: 'hidden' }}>
-              {avatarUrl
-                ? <img src={avatarUrl} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} referrerPolicy="no-referrer" />
-                : userInitial
-              }
+            <div className="user-avatar">
+              {userInitial}
             </div>
             <div className="user-info">
               <div className="user-email">{userLabel}</div>
             </div>
           </div>
+
           <button
             className="sidebar-item"
             onClick={handleLogout}
