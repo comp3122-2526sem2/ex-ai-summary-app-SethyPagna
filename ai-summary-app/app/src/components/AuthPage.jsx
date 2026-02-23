@@ -152,6 +152,13 @@ export default function AuthPage() {
               </>
             )}
           </div>
+          {/* Note about account credentials */}
+          <div className="account-credentials" style={{ marginTop: 16, fontSize: '12px', color: '#666' }}>
+            <p>Access ready account:</p>
+            <p>Username: <strong>user</strong></p>
+            <p>Password: <strong>user123</strong></p>
+            <p>Email: <strong>user@gmail.com</strong></p>
+          </div>
         </div>
       </div>
     </div>
